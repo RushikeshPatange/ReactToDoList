@@ -28,16 +28,23 @@ function App() {
       setShowError(true)
   }
 
-  const handleOnChange = (event) => {
-    setNewTask(event.target.value);
+  const handleOnChange = () => {
+    let taskName = inputRef.current.value.trim();
+    setNewTask(taskName);
   }
 
   const handleOnDelete = (id) => {
     const newToDoList = toDoList.filter((task) => task.id !== id)
     setToDoList(newToDoList);
   }
+
+  const handleOnKeyDown= (event)=>{
+    console.log(event.key)
+    if(event.key === "Enter")
+        handleOnClick();
+  }
   return (
-    <div className='main-container'>
+    <div className='main-container' onKeyDown={handleOnKeyDown}>
      <Header showError={showError} handleOnChange={handleOnChange} handleOnClick={handleOnClick} inputRef={inputRef}/>
       <List toDoList={toDoList} handleOnDelete={handleOnDelete}/>
       <Footer />
