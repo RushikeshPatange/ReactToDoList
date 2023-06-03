@@ -79,7 +79,26 @@ overflow-y: scroll;
   justify-content: center;
   background-color: aquamarine;
   height: 5vh;
-}  
+}
+
+.strike-through{
+  text-decoration: line-through;
+  background-color: greenyellow;
+  color: black;
+}
+
+.completed-task{
+  display: none;
+}
+
+.button{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: 18px;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

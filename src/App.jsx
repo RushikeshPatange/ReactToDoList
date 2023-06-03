@@ -17,7 +17,8 @@ function App() {
     task = newTask ?
     {
       id: toDoList.length === 0 ? 1 : toDoList[toDoList.length - 1]["id"] + 1,
-      name: newTask
+      name: newTask,
+      isCompleted : false
     }:undefined;
     setNewTask("");
     if(task){
@@ -39,14 +40,20 @@ function App() {
   }
 
   const handleOnKeyDown= (event)=>{
-    console.log(event.key)
     if(event.key === "Enter")
         handleOnClick();
+  }
+  const handleOnComplete = (id) =>{
+    setToDoList(toDoList.map((task)=>{
+        if(task.id === id)
+          return {...task,isCompleted:true};
+        return task;
+    }));
   }
   return (
     <div className='main-container' onKeyDown={handleOnKeyDown}>
      <Header showError={showError} handleOnChange={handleOnChange} handleOnClick={handleOnClick} inputRef={inputRef}/>
-      <List toDoList={toDoList} handleOnDelete={handleOnDelete}/>
+      <List toDoList={toDoList} handleOnDelete={handleOnDelete} handleOnComplete={handleOnComplete}/>
       <Footer />
     </div>
   );
